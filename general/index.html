@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>攻略目錄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fbf8f2;--soft:#f4efe6;--line:#e8e1d3;--line-2:#d8cfbd;--text:#2a2d34;--muted:#5d6370;--faint:#8d8f96;--white:#fff;--blue:#2563eb;--coral:#e0533d;--teal:#0e9384;--pink:#d6336c;--orange:#d97706;--purple:#7c3aed;--cyan:#0891b2;--green:#16a34a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:16.5px;line-height:1.85;overflow-x:hidden}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px 48px}
+.hero{padding:36px 0 16px}
+.pill{display:inline-block;background:color-mix(in srgb,var(--coral) 10%,#fff);color:var(--coral);border:1px solid color-mix(in srgb,var(--coral) 22%,#fff);border-radius:999px;padding:3px 14px;font-size:13px;font-weight:700}
+h1{font-size:clamp(28px,7vw,40px);font-weight:900;margin:12px 0 4px;line-height:1.3}
+.bar{height:4px;width:96px;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--purple),var(--coral));margin:10px 0}
+.sub{color:var(--muted);margin:0}
+.tools{margin:8px 0 16px}
+#q{width:100%;min-height:48px;padding:0 16px;border-radius:12px;border:1px solid var(--line-2);background:var(--white);color:var(--text);font:inherit;font-size:16px;outline:none}
+#q:focus{border-color:var(--blue);box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 15%,#fff)}
+.cats{display:flex;gap:6px;overflow-x:auto;margin:12px 0 6px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--muted);font:inherit;font-size:14px;white-space:nowrap;cursor:pointer}
+.cats button.on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700}
+.count{font-size:13px;color:var(--faint)}
+.list{display:grid;gap:12px}
+@media(min-width:720px){.list{grid-template-columns:1fr 1fr}}
+.card{display:block;text-decoration:none;color:inherit;background:var(--white);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:14px;padding:16px;transition:box-shadow .2s}
+.card:hover{box-shadow:0 6px 18px rgba(0,0,0,.07)}
+.card:nth-child(8n+1){--c:var(--blue)}.card:nth-child(8n+2){--c:var(--coral)}.card:nth-child(8n+3){--c:var(--teal)}.card:nth-child(8n+4){--c:var(--pink)}.card:nth-child(8n+5){--c:var(--orange)}.card:nth-child(8n+6){--c:var(--purple)}.card:nth-child(8n+7){--c:var(--cyan)}.card:nth-child(8n+8){--c:var(--green)}
+.meta{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;color:var(--c)}
+.new{background:var(--coral);color:#fff;padding:0 8px;border-radius:999px;font-size:11.5px}
+.card h2{font-size:19px;font-weight:900;margin:6px 0 4px;line-height:1.45}
+.card p{margin:0;font-size:14.5px;color:var(--muted)}
+.date{margin-top:10px;font-size:13px;color:var(--faint)}
+.empty{color:var(--faint);text-align:center;padding:32px 0}
+footer{text-align:center;color:var(--faint);font-size:13px;padding:24px 0}
+</style>
+</head>
+<body>
+<main class="wrap">
+<header class="hero"><span class="pill">LAST WAR 攻略</span><h1>攻略目錄</h1><div class="bar"></div><p class="sub">點擊卡片進入攻略</p></header>
+<div class="tools"><input id="q" type="search" placeholder="搜尋標題、關鍵字" aria-label="搜尋攻略"><div class="cats" id="cats"></div><div class="count" id="count"></div></div><div id="list" class="list"></div>
+</main>
+<footer>LAST WAR 攻略・通用</footer>
+<script>
+(function(){
+  var DATA=[{"file": "tank-vs-air.html", "title": "坦克隊反制飛機隊完整攻略", "category": "", "summary": "飛機隊弱點分析、金柏莉前排戰術、亞當與盧修斯混隊、裝備分配、無人機晶片、職業技能、科技研究及競技場防守。", "keywords": "坦克 飛機 金柏莉 亞當 盧修斯 晶片 科技 競技場", "updated": "2026-10-26", "order": 10}], NEW_DAYS=14, prefix="";
+  var list=document.getElementById('list'),q=document.getElementById('q'),cats=document.getElementById('cats'),count=document.getElementById('count');
+  var cur='全部';
+  function isNew(d){var t=new Date(d+'T00:00:00');return (Date.now()-t.getTime())/864e5<=NEW_DAYS}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var names=['全部'];DATA.forEach(function(d){if(d.category&&names.indexOf(d.category)<0)names.push(d.category)});if(names.length<2)cats.style.display='none';
+  cats.innerHTML=names.map(function(n){return '<button type="button" data-c="'+esc(n)+'">'+esc(n)+'</button>'}).join('');
+  cats.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.dataset.c;render()});
+  q.addEventListener('input',render);
+  function render(){
+    [].forEach.call(cats.children,function(b){b.classList.toggle('on',b.dataset.c===cur)});
+    var k=q.value.trim().toLowerCase();
+    var rows=DATA.filter(function(d){
+      if(cur!=='全部'&&d.category!==cur)return false;
+      if(!k)return true;
+      return (d.title+' '+d.category+' '+d.summary+' '+(d.keywords||'')).toLowerCase().indexOf(k)>=0;
+    });
+    count.textContent='共 '+rows.length+' 篇';
+    list.innerHTML=rows.length?rows.map(function(d){return '<a class="card" href="'+prefix+esc(d.file)+'"><div class="meta">'+(d.category?'<span>'+esc(d.category)+'</span>':'')+''+(isNew(d.updated)?'<span class="new">NEW</span>':'')+'</div><h2>'+esc(d.title)+'</h2><p>'+esc(d.summary)+'</p><div class="date">最後更新：'+esc(d.updated)+'</div></a>'}).join(''):'<p class="empty">找不到符合的攻略</p>';
+  }
+  render();
+})();
+</script>
+</body>
+</html>
