@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>坦克隊反制飛機隊｜D45W</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050b1a;--bg-2:#0a1530;--panel:#0d1b3d;--panel-2:#112450;--line:#1e3a75;--line-soft:#16305f;--text:#dfe8ff;--muted:#8fa3cc;--cyan:#3ee6ff;--cyan-dim:#1b9fc2;--blue:#4d8dff;--amber:#ffc14d;--red:#ff6b7f;--green:#4dffb0;--violet:#b48cff;--radius:12px;--mono:"JetBrains Mono",ui-monospace,monospace;--display:"Orbitron","Noto Sans TC",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:16.5px;line-height:1.85;overflow-x:hidden;background-image:linear-gradient(rgba(62,230,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(62,230,255,.04) 1px,transparent 1px),radial-gradient(ellipse at 20% -10%,rgba(77,141,255,.25),transparent 55%),radial-gradient(ellipse at 100% 30%,rgba(62,230,255,.10),transparent 50%);background-size:40px 40px,40px 40px,100% 100%,100% 100%;background-attachment:fixed}
+a{color:var(--cyan)}
+.nav{position:sticky;top:0;z-index:20;background:rgba(5,11,26,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line-soft)}
+.nav-inner{max-width:1040px;margin:0 auto;display:flex;align-items:center;gap:8px;padding:0 8px;height:56px}
+.back{display:flex;align-items:center;justify-content:center;min-width:44px;height:44px;color:var(--cyan);text-decoration:none;font-size:22px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.12em;font-size:13px;color:var(--cyan);white-space:nowrap}
+.nav-links{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;padding:11px 10px;border-radius:6px;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan);background:rgba(62,230,255,.08)}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;box-shadow:0 0 8px var(--cyan)}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px}
+.hero{padding:48px 0 32px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid rgba(62,230,255,.35);padding:4px 10px;border-radius:4px;letter-spacing:.08em}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+h1{font-size:clamp(28px,6vw,46px);line-height:1.25;margin:18px 0 16px;font-weight:900;letter-spacing:.02em}
+h1 .hl{background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-card{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:14px 18px;margin-bottom:10px}
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cyan-dim);text-transform:uppercase}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chips span{font-size:13px;padding:3px 10px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2)}
+section{padding:36px 0;border-top:1px solid var(--line-soft)}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sec-no{font-family:var(--display);font-size:28px;font-weight:700;color:var(--cyan);text-shadow:0 0 14px rgba(62,230,255,.5);min-width:44px}
+h2{font-size:clamp(21px,4vw,26px);margin:0;line-height:1.4;flex:1;min-width:0}
+.ltag{font-family:var(--mono);font-size:12px;padding:3px 10px;border-radius:4px;border:1px solid;letter-spacing:.06em}
+.ltag.adam{color:var(--amber);border-color:rgba(255,193,77,.5);background:rgba(255,193,77,.08)}
+.ltag.lucius{color:var(--violet);border-color:rgba(180,140,255,.5);background:rgba(180,140,255,.08)}
+h3{font-size:18px;margin:28px 0 10px;display:flex;align-items:center;gap:10px}
+h3::before{content:"";width:4px;height:18px;background:var(--cyan);border-radius:2px;box-shadow:0 0 8px var(--cyan);flex:none}
+h4{font-size:16px;margin:18px 0 6px;color:var(--cyan)}
+p{margin:0 0 12px}
+ul{margin:0 0 12px;padding-left:22px}
+li::marker{color:var(--cyan)}
+strong{color:#fff}
+.small{font-size:14.5px}
+.key{margin:18px 0;padding:14px 16px 14px 18px;border-radius:10px;background:linear-gradient(90deg,rgba(62,230,255,.12),rgba(62,230,255,.02));border:1px solid rgba(62,230,255,.35);border-left:4px solid var(--cyan)}
+.key .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--cyan);display:block;margin-bottom:2px}
+.note{margin:12px 0;padding:10px 14px;border-radius:8px;font-size:14px;color:var(--muted);background:rgba(255,193,77,.06);border:1px dashed rgba(255,193,77,.35)}
+.note::before{content:"※ ";color:var(--amber)}
+.disc{margin-top:14px;padding:12px 14px;border-radius:8px;font-size:14px;color:var(--muted);border:1px solid var(--line);background:var(--bg-2)}
+.tbl{width:100%;overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:420px}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+th{background:var(--panel-2);color:var(--cyan);font-weight:700;font-size:13px;letter-spacing:.06em}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;color:#fff;white-space:nowrap}
+table.proscons td:first-child{white-space:normal;font-weight:400;color:var(--text)}
+table.proscons th:first-child{color:var(--green)}table.proscons th:last-child{color:var(--red)}
+th.c-adam{color:var(--amber)}th.c-lucius{color:var(--violet)}
+.grid{display:grid;gap:12px;margin:14px 0}
+@media(min-width:640px){.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}}
+.card{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.card h4{margin-top:0}.card p:last-child,.card .note:last-child{margin-bottom:0}
+.role{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.1em}
+.card.threat{border-top:3px solid var(--red)}.card.ally,.card.core{border-top:3px solid var(--cyan)}.card.adam{border-top:3px solid var(--amber)}.card.lucius{border-top:3px solid var(--violet)}
+.card .tail{margin:8px 0 0}
+.stat{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line-soft);font-size:14.5px}
+.stat:last-of-type{border-bottom:0}
+.stat b{font-family:var(--mono);color:var(--amber);font-weight:500;text-align:right;white-space:nowrap}
+.lineups{display:grid;gap:12px;margin:14px 0}
+@media(min-width:640px){.lineups{grid-template-columns:1fr 1fr}}
+.lineup{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:var(--panel)}
+.lineup.adam{border-top:3px solid var(--amber)}.lineup.lucius{border-top:3px solid var(--violet)}
+.lineup h4{margin:0 0 2px;color:#fff;font-size:17px}
+.lineup .type{font-size:13px;font-weight:700}
+.lineup.adam .type{color:var(--amber)}.lineup.lucius .type{color:var(--violet)}
+.lineup p{font-size:14px;margin:6px 0 0}
+.phases{display:grid;gap:10px;margin:14px 0}
+.phase{display:grid;grid-template-columns:72px 1fr 1fr;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
+.phase>div{padding:10px 12px;font-size:14.5px}
+.phase .p{background:var(--panel-2);font-family:var(--display);color:var(--cyan);font-size:12px;display:flex;align-items:center;justify-content:center;text-align:center}
+.phase .air{border-right:1px solid var(--line-soft)}
+.phase .lab{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;margin-bottom:2px}
+.phase .air .lab{color:var(--red)}.phase .tank .lab{color:var(--green)}
+.phase.hot{border-color:rgba(255,107,127,.6);box-shadow:0 0 18px rgba(255,107,127,.15)}
+.gear{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.gear-box{border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;background:var(--bg-2)}
+.gear-box .star{font-family:var(--display);font-size:30px;color:var(--amber);line-height:1.2;text-shadow:0 0 12px rgba(255,193,77,.4)}
+.gear-box .star small{font-size:14px;font-family:"Noto Sans TC",sans-serif;color:var(--muted)}
+.gear-box .gn{font-weight:700;margin-top:4px}.gear-box .gd{font-size:13px;color:var(--muted)}
+.formation{border:1px solid var(--line);border-radius:var(--radius);padding:16px;background:linear-gradient(180deg,rgba(77,141,255,.08),transparent),var(--panel);margin:14px 0}
+.formation.adam{border-color:rgba(255,193,77,.45)}.formation.lucius{border-color:rgba(180,140,255,.45)}
+.enemy{text-align:center;font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.14em;margin-bottom:6px}
+.row-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);margin:4px 0 8px}
+.slots{display:grid;gap:8px;margin-bottom:12px;grid-template-columns:repeat(3,1fr)}
+.slots.two{grid-template-columns:repeat(2,calc((100% - 16px)/3));justify-content:center}
+.slots.three{margin-bottom:0}
+.slot{border:1px solid var(--line);border-radius:10px;padding:10px 4px;text-align:center;background:var(--bg-2)}
+.slot .name{font-weight:900;font-size:16px}
+.slot .job{font-size:12px;color:var(--muted);line-height:1.5}
+.slot.core{border-color:var(--cyan);box-shadow:0 0 0 1px rgba(62,230,255,.3),0 0 22px rgba(62,230,255,.18)}.slot.core .name{color:var(--cyan)}
+.slot.sw-adam{border-color:var(--amber)}.slot.sw-adam .name{color:var(--amber)}
+.slot.sw-lucius{border-color:var(--violet)}.slot.sw-lucius .name{color:var(--violet)}
+.chip-card{border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;background:var(--panel);margin:14px 0}
+.chip-card h4{margin:0 0 18px;color:#fff;text-align:center}
+.cross{display:grid;grid-template-columns:repeat(3,1fr);gap:16px 8px;max-width:340px;margin:0 auto}
+.node{position:relative;border:1px solid var(--line);border-radius:10px;padding:14px 4px 8px;text-align:center;background:var(--bg-2)}
+.node .pos{font-family:var(--mono);font-size:11px;color:var(--muted)}
+.node .nm{font-weight:700;font-size:14px;line-height:1.4}
+.node .n{position:absolute;top:-11px;left:50%;transform:translateX(-50%);width:22px;height:22px;border-radius:50%;background:var(--cyan);color:var(--bg);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 10px rgba(62,230,255,.6)}
+.node.top{grid-column:2;grid-row:1}.node.left{grid-column:1;grid-row:2}.node.mid{grid-column:2;grid-row:2;border-color:var(--cyan);box-shadow:0 0 18px rgba(62,230,255,.25)}.node.right{grid-column:3;grid-row:2}
+.seq{margin-top:14px;text-align:center;font-family:var(--mono);font-size:14px;color:var(--cyan)}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.flow span{background:var(--panel-2);border:1px solid var(--line);padding:6px 12px;border-radius:6px;font-weight:700;font-size:14px}
+.flow i{color:var(--cyan);font-style:normal}
+.steps{display:grid;gap:12px;margin:14px 0}
+.step{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.step .sn{font-size:20px;color:var(--bg);background:var(--cyan);border-radius:8px;height:56px;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.1;font-weight:900;box-shadow:0 0 14px rgba(62,230,255,.35)}
+.step .sn small{font-size:10px}
+.st-k{display:none}
+.step h4{margin:0 0 4px;color:#fff}
+.step p{margin:0 0 6px;font-size:15px;color:var(--muted)}
+.pts{counter-reset:pt;display:grid;gap:12px}
+.pt{counter-increment:pt;position:relative;padding:16px 16px 16px 64px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.pt::before{content:counter(pt,decimal-leading-zero);position:absolute;left:16px;top:14px;font-family:var(--display);font-size:24px;color:var(--cyan);text-shadow:0 0 12px rgba(62,230,255,.5)}
+.pt h4{margin:0 0 4px;color:#fff}.pt p{margin:0;color:var(--muted);font-size:15px}
+.final{margin:24px 0 8px;padding:20px;border-radius:var(--radius);border:1px solid var(--cyan);background:linear-gradient(135deg,rgba(62,230,255,.14),rgba(77,141,255,.08))}
+.final .lbl{font-family:var(--display);font-size:12px;letter-spacing:.2em;color:var(--cyan)}
+.final .main{margin:6px 0 0;font-size:17px;font-weight:500}.final .sub{margin:8px 0 0;font-size:14px;color:var(--muted)}
+footer{padding:32px 0 48px;color:var(--muted);font-size:13px;text-align:center;border-top:1px solid var(--line-soft)}
+.totop{position:fixed;right:16px;bottom:16px;width:48px;height:48px;border-radius:50%;border:1px solid var(--cyan);background:rgba(5,11,26,.9);color:var(--cyan);font-size:18px;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .2s;box-shadow:0 0 12px rgba(62,230,255,.3)}
+.totop.show{opacity:1;pointer-events:auto}
+@media(max-width:480px){.phase{grid-template-columns:52px 1fr 1fr}.phase>div{padding:8px}th,td{padding:8px 10px}.slot .name{font-size:15px}.node .nm{font-size:13px}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner"><a class="back" href="./index.html" aria-label="返回目錄">‹</a><div class="brand">LAST WAR</div><div class="nav-links" id="navlinks"><a href="#core">核心</a><a href="#s1">飛機隊</a><a href="#s2">培養</a><a href="#s3">金柏莉前排</a><a href="#s4">亞當混隊</a><a href="#s5">盧修斯混隊</a><a href="#s6">晶片</a><a href="#s7">職業</a><a href="#s8">科技</a><a href="#s9">競技場</a><a href="#s10">速查</a><a href="#s11">培養順序</a><a href="#end">結論</a></div></div><div class="progress" id="progress"></div></nav>
+<main class="wrap">
+<header class="hero">
+  <span class="tag">LAST WAR 攻略</span>
+  <h1>《Last War》<span class="hl">坦克隊</span>反制<span class="hl">飛機隊</span>完整攻略</h1>
+  <div class="hero-card"><div class="k">適用玩家</div><div>中階坦克隊、坦克混隊玩家</div></div>
+  <div class="hero-card"><div class="k">攻略內容</div><div class="chips"><span>飛機隊弱點分析</span><span>金柏莉前排戰術</span><span>亞當與盧修斯混隊</span><span>裝備分配</span><span>無人機晶片</span><span>職業技能</span><span>科技研究</span><span>競技場防守</span></div></div>
+</header>
+<section id="core"><div class="sec-head"><span class="sec-no">00</span><h2>攻略核心</h2></div>
+<p>坦克隊面對飛機隊時，即使面板戰力較高，也可能因兵種克制、集中爆發及後排控制而落敗。</p>
+<div class="key"><span class="lbl">主要思路</span>提高隊伍生存能力，撐過飛機隊的集中爆發，保留金柏莉後續輸出與反擊的機會。</div>
+<p>主要有兩種陣容方向：</p>
+<div class="lineups"><div class="lineup adam"><div class="type">亞當混隊</div><h4>防守反擊、前排減傷</h4><p>主要用途：反制飛機隊</p></div><div class="lineup lucius"><div class="type">盧修斯混隊</div><h4>能量防護、雙護盾</h4><p>主要用途：坦克內戰、競技場防守</p></div></div>
+<div class="disc">以下依照提供的攻略資料整合。技能數值、裝備星級效果及戰鬥結果屬於原攻略的參考資訊，未經最新遊戲版本獨立驗證，不應視為固定或必然的效果。</div>
+</section><section id="s1"><div class="sec-head"><span class="sec-no">01</span><h2>坦克隊為什麼容易輸給飛機隊？</h2></div>
+<p>飛機隊對坦克隊具有兵種優勢，並且可以利用高爆發、降低防禦與控制技能，讓坦克隊在主要輸出發揮前就失去戰鬥能力。</p>
+<h3>飛機隊的三大威脅</h3>
+<div class="tbl"><table class=""><thead><tr><th>英雄</th><th>主要能力</th><th>對坦克隊的影響</th></tr></thead><tbody><tr><td>DVA</td><td>高爆發輸出</td><td>短時間內造成大量傷害</td></tr><tr><td>死神 Swift</td><td>降低防禦</td><td>放大隊伍受到的傷害</td></tr><tr><td>斯凱勒 Schuyler</td><td>後排攻擊與控制</td><td>干擾金柏莉的技能輸出</td></tr></tbody></table></div>
+<div class="grid g3"><div class="card threat"><div class="role">高爆發傷害</div><h4>DVA</h4><p class="small">「渦輪超載」可提高攻擊能力。</p><p class="small">原攻略參考數值：</p><div class="stat"><span>攻擊力提升</span><b>30%</b></div><div class="stat"><span>普通攻擊係數</span><b>520%</b></div><div class="stat"><span>技能傷害係數</span><b>718%</b></div></div><div class="card threat"><div class="role">降低防禦</div><h4>死神</h4><p class="small">透過降防效果，提高隊伍對敵方造成的傷害。</p><div class="stat"><span>參考降防幅度</span><b>約 20% 至 25%</b></div><div class="note">實際效果依技能等級與疊加條件而定。</div></div><div class="card threat"><div class="role">後排控制</div><h4>斯凱勒</h4><p class="small">能攻擊後排並造成控制效果。如果金柏莉在關鍵時機受到暈眩，可能錯過主要技能的發動機會。</p></div></div>
+<h3>金柏莉的反擊能力</h3>
+<p>金柏莉是坦克隊的主要輸出英雄。</p>
+<p>原攻略指出，「能量征服」可透過符合條件的暴擊累積攻擊加成。</p>
+<div class="grid g1"><div class="card core"><div class="role">參考效果</div><div class="stat"><span>符合條件的暴擊可累積攻擊力</span><b>12%</b></div><div class="stat"><span>單次技能最多發射彈藥</span><b>16 發</b></div><p class="small tail">存活時間越長，越有機會累積傷害並發動後續攻擊。</p></div></div>
+<h3>雙方的戰鬥節奏</h3>
+<div class="phases"><div class="phase"><div class="p">第一<br>階段</div><div class="air"><span class="lab">飛機隊</span>一般輸出</div><div class="tank"><span class="lab">坦克隊</span>開始累積傷害</div></div><div class="phase hot"><div class="p">第二<br>階段</div><div class="air"><span class="lab">飛機隊</span>集中爆發、降防與控制</div><div class="tank"><span class="lab">坦克隊</span>承受傷害、維持生存</div></div><div class="phase"><div class="p">第三<br>階段</div><div class="air"><span class="lab">飛機隊</span>持續輸出</div><div class="tank"><span class="lab">坦克隊</span>爭取金柏莉反擊</div></div></div>
+<div class="note">這是簡化的戰鬥模型，實際技能不一定在固定回合發動。</div>
+<div class="key"><span class="lbl">反制關鍵</span>金柏莉能否撐過飛機隊的主要爆發，並成功發動後續技能。</div>
+</section><section id="s2"><div class="sec-head"><span class="sec-no">02</span><h2>中階玩家的培養方向：防禦與生存</h2></div>
+<p>不同戰力階段，適合的培養方向有所不同。</p>
+<div class="tbl"><table class=""><thead><tr><th>玩家類型</th><th>培養重點</th><th>主要用途</th></tr></thead><tbody><tr><td>高戰玩家</td><td>攻擊、爆發</td><td>主動進攻、快速突破</td></tr><tr><td>中階玩家</td><td>防禦、生存</td><td>協同防守、持續作戰</td></tr></tbody></table></div>
+<h3>為什麼中階玩家需要提高防禦？</h3>
+<p>當主力隊伍無法單獨擊敗高戰玩家時，單純增加攻擊力，不一定能改變戰鬥結果。</p>
+<p>但提高生存能力，可以讓英雄維持更長的戰鬥時間，增加防禦技能、護盾與持續輸出的效益。</p>
+<p>尤其在基地或建築防守時，可能由多支隊伍共同抵禦敵方攻擊。如果相關防禦效果能作用於多支隊伍，就可能提高整體防守效率。</p>
+<h3>培養重點</h3>
+<div class="grid g2"><div class="card "><h4>提高英雄生存能力</h4><p class="small">增加生命、防禦、減傷及護盾。</p></div><div class="card "><h4>保留金柏莉輸出</h4><p class="small">避免主力英雄過早陣亡。</p></div><div class="card "><h4>強化團隊防護</h4><p class="small">利用防禦英雄及增益技能延長作戰時間。</p></div><div class="card "><h4>集中培養資源</h4><p class="small">優先提升核心英雄的裝備與關鍵技能。</p></div></div>
+<div class="note">防禦是這套反制戰術的主要方向，但仍需保留足夠輸出，否則即使延長戰鬥時間，也可能無法擊敗對手。</div>
+</section><section id="s3"><div class="sec-head"><span class="sec-no">03</span><h2>特殊戰術：金柏莉站前排</h2></div>
+<p>傳統坦克隊通常由兩名防禦英雄站前排，三名英雄站後排。</p>
+<p>但飛機隊具有後排攻擊與控制能力，金柏莉即使站在後排，也可能在發動主要技能前受到重創。</p>
+<p>因此，這套戰術將高裝備金柏莉移至前排，利用高階防具提高承傷能力，同時保留她的主要輸出。</p>
+<h3>金柏莉「3＋4」裝備法則</h3>
+<div class="gear"><div class="gear-box"><div class="star">3<small> 星</small></div><div class="gn">裝甲防具</div><div class="gd">增加生命值</div></div><div class="gear-box"><div class="star">4<small> 星</small></div><div class="gn">雷達防具</div><div class="gd">增加能量抗性</div></div></div>
+<div class="tbl"><table class=""><thead><tr><th>裝備條件</th><th>參考加成</th></tr></thead><tbody><tr><td>裝甲 3 星</td><td>兩次 60,000 生命值加成，合計 120,000</td></tr><tr><td>雷達 4 星</td><td>兩項能量抗性，合計約 40%</td></tr></tbody></table></div>
+<h4>配置目的：</h4>
+<ul><li>彌補金柏莉作為輸出英雄的生存劣勢。</li><li>提高承受飛機隊能量傷害的能力。</li><li>保留金柏莉後續發動技能的機會。</li></ul>
+<div class="note">「3＋4」是原攻略提出的裝備參考門檻，不代表達標後一定能承受所有飛機隊的攻擊。</div>
+<h3>威廉斯「1＋2」裝備法則</h3>
+<p>威廉斯負責分擔前排傷害，原攻略提出的基礎裝備門檻如下。</p>
+<div class="tbl"><table class=""><thead><tr><th>裝備</th><th>參考星級</th><th>主要用途</th></tr></thead><tbody><tr><td>裝甲防具</td><td>1 星</td><td>提高基礎生命</td></tr><tr><td>雷達防具</td><td>2 星</td><td>提高能量防禦</td></tr></tbody></table></div>
+<div class="note">這是初步配置參考，實際是否足夠仍取決於雙方戰力及其他屬性。</div>
+<h3>全隊裝備分配優先順序</h3>
+<div class="tbl"><table class=""><thead><tr><th>優先度</th><th>英雄</th><th>裝備方向</th></tr></thead><tbody><tr><td>①</td><td>金柏莉</td><td>最好的攻擊裝備、裝甲及雷達</td></tr><tr><td>②</td><td>威廉斯</td><td>裝甲、雷達，強化承傷</td></tr><tr><td>③</td><td>莫非</td><td>生存裝備，維持團隊防護</td></tr><tr><td>④</td><td>亞當／盧修斯</td><td>生存裝備，維持反擊或防護效果</td></tr><tr><td>⑤</td><td>馬歇爾</td><td>基礎生存裝備，維持團隊增益</td></tr></tbody></table></div>
+<div class="key"><span class="lbl">配置原則</span>優先確保金柏莉具備前排生存與輸出能力，再逐步提高威廉斯及後排核心英雄的防護能力。</div>
+</section><section id="s4"><div class="sec-head"><span cl
