@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>D45W 攻略目錄</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050b1a;--bg-2:#0a1530;--panel:#0d1b3d;--panel-2:#112450;--line:#1e3a75;--line-soft:#16305f;--text:#dfe8ff;--muted:#8fa3cc;--cyan:#3ee6ff;--cyan-dim:#1b9fc2;--blue:#4d8dff;--amber:#ffc14d;--mono:"JetBrains Mono",ui-monospace,monospace;--display:"Orbitron","Noto Sans TC",sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Noto Sans TC",system-ui,sans-serif;font-size:16.5px;line-height:1.8;overflow-x:hidden;background-image:linear-gradient(rgba(62,230,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(62,230,255,.04) 1px,transparent 1px),radial-gradient(ellipse at 20% -10%,rgba(77,141,255,.25),transparent 55%),radial-gradient(ellipse at 100% 30%,rgba(62,230,255,.10),transparent 50%);background-size:40px 40px,40px 40px,100% 100%,100% 100%;background-attachment:fixed}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 48px}
+.top{height:56px;display:flex;align-items:center;border-bottom:1px solid var(--line-soft);font-family:var(--display);font-weight:700;letter-spacing:.12em;font-size:13px;color:var(--cyan);max-width:880px;margin:0 auto;padding:0 16px}
+.hero{padding:40px 0 24px}
+.tag{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--cyan);border:1px solid rgba(62,230,255,.35);padding:4px 10px;border-radius:4px;letter-spacing:.08em}
+.tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+h1{font-size:clamp(28px,7vw,42px);font-weight:900;margin:14px 0 4px;line-height:1.3}
+h1 .hl{background:linear-gradient(90deg,var(--cyan),var(--blue));-webkit-background-clip:text;background-clip:text;color:transparent;font-family:var(--display)}
+.sub{color:var(--muted);margin:0}
+.tools{margin:8px 0 16px}
+#q{width:100%;min-height:48px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);font:inherit;font-size:16px;outline:none}
+#q:focus{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(62,230,255,.15)}
+.cats{display:flex;gap:6px;overflow-x:auto;margin:12px 0 6px;scrollbar-width:none}
+.cats::-webkit-scrollbar{display:none}
+.cats button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--bg-2);color:var(--muted);font:inherit;font-size:14px;white-space:nowrap;cursor:pointer}
+.cats button.on{color:var(--bg);background:var(--cyan);border-color:var(--cyan);font-weight:700;box-shadow:0 0 12px rgba(62,230,255,.4)}
+.count{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.1em}
+.list{display:grid;gap:12px}
+@media(min-width:720px){.list{grid-template-columns:1fr 1fr}}
+.card{display:block;text-decoration:none;color:inherit;background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-top:3px solid var(--cyan);border-radius:12px;padding:16px;transition:border-color .2s,box-shadow .2s}
+.card:hover{border-color:var(--cyan);box-shadow:0 0 18px rgba(62,230,255,.18)}
+.meta{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:var(--cyan-dim);letter-spacing:.06em}
+.new{font-family:var(--display);font-size:11px;color:var(--bg);background:var(--amber);padding:1px 8px;border-radius:4px;letter-spacing:.1em;box-shadow:0 0 10px rgba(255,193,77,.4)}
+.card h2{font-size:19px;margin:6px 0 4px;line-height:1.45;color:#fff}
+.card p{margin:0;font-size:14.5px;color:var(--muted)}
+.date{margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--amber)}
+.empty{color:var(--muted);text-align:center;padding:32px 0}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:24px 0}
+</style>
+</head>
+<body>
+<div class="top">LAST WAR</div>
+<main class="wrap">
+<header class="hero"><span class="tag">ALLIANCE GUIDE</span><h1><span class="hl">D45W</span> 攻略目錄</h1><p class="sub">點擊卡片進入攻略</p></header>
+<div class="tools"><input id="q" type="search" placeholder="搜尋標題、關鍵字" aria-label="搜尋攻略"><div class="cats" id="cats"></div><div class="count" id="count"></div></div><div id="list" class="list"></div>
+</main>
+<footer>LAST WAR 攻略・D45W</footer>
+<script>
+(function(){
+  var DATA=[{"file": "tank-vs-air.html", "title": "坦克隊反制飛機隊完整攻略", "category": "", "summary": "飛機隊弱點分析、金柏莉前排戰術、亞當與盧修斯混隊、裝備分配、無人機晶片、職業技能、科技研究及競技場防守。", "keywords": "坦克 飛機 金柏莉 亞當 盧修斯 晶片 科技 競技場", "updated": "2026-10-26", "order": 10}], NEW_DAYS=14, prefix="";
+  var list=document.getElementById('list'),q=document.getElementById('q'),cats=document.getElementById('cats'),count=document.getElementById('count');
+  var cur='全部';
+  function isNew(d){var t=new Date(d+'T00:00:00');return (Date.now()-t.getTime())/864e5<=NEW_DAYS}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  var names=['全部'];DATA.forEach(function(d){if(d.category&&names.indexOf(d.category)<0)names.push(d.category)});if(names.length<2)cats.style.display='none';
+  cats.innerHTML=names.map(function(n){return '<button type="button" data-c="'+esc(n)+'">'+esc(n)+'</button>'}).join('');
+  cats.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;cur=b.dataset.c;render()});
+  q.addEventListener('input',render);
+  function render(){
+    [].forEach.call(cats.children,function(b){b.classList.toggle('on',b.dataset.c===cur)});
+    var k=q.value.trim().toLowerCase();
+    var rows=DATA.filter(function(d){
+      if(cur!=='全部'&&d.category!==cur)return false;
+      if(!k)return true;
+      return (d.title+' '+d.category+' '+d.summary+' '+(d.keywords||'')).toLowerCase().indexOf(k)>=0;
+    });
+    count.textContent='共 '+rows.length+' 篇';
+    list.innerHTML=rows.length?rows.map(function(d){return '<a class="card" href="'+prefix+esc(d.file)+'"><div class="meta">'+(d.category?'<span>'+esc(d.category)+'</span>':'')+''+(isNew(d.updated)?'<span class="new">NEW</span>':'')+'</div><h2>'+esc(d.title)+'</h2><p>'+esc(d.summary)+'</p><div class="date">UPDATED '+esc(d.updated)+'</div></a>'}).join(''):'<p class="empty">找不到符合的攻略</p>';
+  }
+  render();
+})();
+</script>
+</body>
+</html>
